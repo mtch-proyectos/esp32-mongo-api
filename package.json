@@ -1,0 +1,21 @@
+{
+  "name": "e_label_mongo_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "init": "^0.1.2",
+    "mogoose": "^0.0.1-security",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.20.0"
+  }
+}
