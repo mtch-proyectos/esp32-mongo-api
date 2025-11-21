@@ -1,8 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-// TU URI DE CONEXIÓN COMPLETO
-const uri = "mongodb+srv://mary1251:Caracas4711@cluster0.rmbngwa.mongodb.net/e_label_DB?appName=Cluster0";
-
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
 // Función que se conecta y devuelve la instancia de la base de datos

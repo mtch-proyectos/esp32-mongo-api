@@ -1,6 +1,7 @@
 // server.js
 // Importamos las funciones desde nuestro archivo de conexión
 
+const requireApiKey = require('./middleware/authMiddleware'); // Importa la función de middleware
 const express = require('express');
 const app = express();
 const port = 3000; // Puerto donde escuchará el servidor
@@ -13,7 +14,7 @@ const { connectToDatabase, closeConnection } = require('./db_connect'); // Impor
 
 // --- RUTA API PARA ADMIN: INGRESAR PRODUCTO ---
 // Añadir nuevo producto (CREATE)
-app.post('/admin/productos', async (req, res) => {
+app.post('/admin/productos', requireApiKey, async (req, res) => {
     let db;
     try {
         db = await connectToDatabase();
@@ -49,7 +50,7 @@ app.post('/admin/productos', async (req, res) => {
 });
 // --- RUTA API PARA ADMIN: CONSULTAR PRODUCTOS ---
 // Obtener todos los productos (READ - ALL)
-app.get('/admin/productos', async (req, res) => {
+app.get('/admin/productos', requireApiKey, async (req, res) => {
     let db;
     try {
         db = await connectToDatabase();
@@ -71,7 +72,7 @@ app.get('/admin/productos', async (req, res) => {
 });
 // --- RUTA API PARA ADMIN: ACTUALIZAR PRODUCTO ---
 // Modificar un producto existente (UPDATE)
-app.put('/admin/productos/:codigo', async (req, res) => {
+app.put('/admin/productos/:codigo',requireApiKey, async (req, res) => {
     let db;
     try {
         db = await connectToDatabase();
@@ -140,7 +141,7 @@ app.get('/api/etiquetas', async (req, res) => {
 
 // --- RUTA API PARA ADMIN: ELIMINAR PRODUCTO ---
 // Eliminar producto por código (DELETE)
-app.delete('/admin/productos/:codigo', async (req, res) => {
+app.delete('/admin/productos/:codigo', requireApiKey,async (req, res) => {
     let db;
     try {
         db = await connectToDatabase();

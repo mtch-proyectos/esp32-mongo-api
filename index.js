@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-// TU URI DE CONEXIÓN COMPLETO (Copiar y Pegar aquí)
-const uri = "mongodb+srv://mary1251:Caracas4711@cluster0.rmbngwa.mongodb.net/?appName=Cluster0";
+const uri = process.env.MONGO_URI;
 
 // Crea una instancia del cliente de MongoDB
 const client = new MongoClient(uri);
@@ -12,17 +11,17 @@ async function run() {
     await client.connect();
     
     // 2. Accede a la base de datos de destino
-    const database = client.db('mi_base_de_datos'); 
+    const database = client.db('e_label_DB'); 
     
     // Opcional: accede a una colección para insertar un dato de prueba
-    const collection = database.collection('documentos_prueba');
+    const collection = database.collection('productos');
 
     // Inserta un documento para confirmar que tienes permisos de escritura
-    const doc = { nombre: "Test", fecha: new Date() };
+    const doc = {  codProducto: "Test", fecha: new Date() };
     await collection.insertOne(doc);
 
     console.log("¡Conexión y prueba de escritura exitosas! 🎉");
-    console.log("Documento insertado en la colección 'documentos_prueba'.");
+    console.log("Documento insertado en la colección 'productos'.");
     
   } catch (err) {
     // Muestra el error si falla la conexión
